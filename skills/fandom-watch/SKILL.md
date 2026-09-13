@@ -67,8 +67,9 @@ It merges what the feeds are literally shouting (headlines carrying
 Present the headlines as **what the feeds show right now**, with their
 links — "o ge está marcando Flamengo x Corinthians como ao vivo agora" —
 and never attach a score to them. A live headline is a pointer; a placar
-comes only from `matchday`. Then offer the provider link for a followed
-team, which is what unlocks real scores.
+comes only from `matchday`. Then offer to turn on the team's placar em
+tempo real (live scores) — in those words, never "provedor" — which is
+what unlocks real scores.
 
 ## Reply formats
 
@@ -102,5 +103,7 @@ silence:
     fandom.py config set timezone=America/Sao_Paulo digest_time=08:30 language=pt-BR
 
 `teams list` and `config set` answer `onboarding_missing` — any key there
-means the `fandom-onboarding` conversation is unfinished; start it (after the
-first follow, never before).
+means the first-contact conversation is unfinished; start it (after the
+first follow, never before). In your replies, call it the resumo da manhã
+(or morning roundup), never "digest" — that is the command's name, not a
+word for people.

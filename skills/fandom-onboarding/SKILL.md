@@ -20,9 +20,15 @@ Finished means `fandom.py teams list` answers `onboarding_missing: []`.
    name becomes its IANA zone. Save it.
 3. **Digest time** — offer the default: "resumo todo dia às 08:30, bom?"
    Save as `digest_time=HH:MM`, `digest_enabled=false` if they decline.
-4. **What else to follow** — the BR seed (Brasileirão, CBLOL, NBA) is already
-   in; ask what they actually root for, one at a time, and add each with its
-   aliases. `teams remove <key>` for what they do not want.
+   (In your own words to the user it is the "resumo da manhã"; `digest` is
+   the command's name, never theirs.)
+4. **What else to follow** — the BR seed (Brasileirão, CBLOL, NBA, CS2) is
+   already in; ask what they actually root for, one at a time, and add each
+   with its aliases. `teams remove <key>` for what they do not want.
+   When a team's scores matter to them, find the provider link —
+   `search_team` then re-add with `--source-id` — and call it what it is in
+   their words: "placar em tempo real" / "live scores", never "provedor"
+   or "provider".
 
 ## Timezone is fixed at boot
 

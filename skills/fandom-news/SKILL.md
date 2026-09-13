@@ -5,13 +5,18 @@ description: The morning digest of everything the user follows, and sports small
 
 # Fandom News — the morning read
 
+The user never hears the word "digest": in their language it is the
+**resumo da manhã** (pt-BR) or **morning roundup** (EN). The command keeps
+its name; the words they read do not.
+
 One command, one message:
 
     /opt/hermes/.venv/bin/python3 /var/lib/hermes/skills/fandom-watch/scripts/fandom.py digest
 
 The final response of your turn IS the digest — the cron's `--deliver`
 relays it to the owner's chat. Compose it in their language, scannable in
-one glance, using the reply formats of `fandom-watch/SKILL.md`.
+one glance, using the reply formats of `fandom-watch/SKILL.md` — and calling it the
+resumo da manhã / morning roundup, never "digest".
 
 ## Shape
 
