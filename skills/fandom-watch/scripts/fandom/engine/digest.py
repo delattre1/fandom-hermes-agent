@@ -28,7 +28,9 @@ def build(teams: list[Team], items: list[NewsItem], failed_sources: list[str],
     return {
         "at": clock.iso(),
         "teams": followed,
-        "failed_sources": failed_sources,
+        # Shared feeds are swept once per followed team, so the same dead feed
+        # is reported once per team -- the digest needs it once, period.
+        "failed_sources": sorted(set(failed_sources)),
         "quiet": bool(teams) and all(entry["count"] == 0 for entry in followed),
         "sources_read": len(items),
     }

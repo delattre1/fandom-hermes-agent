@@ -32,9 +32,10 @@ class TestDigest:
         payload = build_digest([followed], [news("Palmeiras vence clássico")], [])
         assert payload["quiet"] is True
 
-    def test_failed_sources_are_named(self, store):
+    def test_failed_sources_are_named_and_deduped(self, store):
         followed = store.add(Team(key="nba", name="NBA", sport=Sport.BASQUETE, aliases=["nba"]))
-        payload = build_digest([followed], [], ["ge.globo.com: blocked"])
+        payload = build_digest([followed], [],
+                               ["ge.globo.com: blocked", "ge.globo.com: blocked"])
         assert payload["failed_sources"] == ["ge.globo.com: blocked"]
         assert payload["quiet"] is True
 
