@@ -55,6 +55,12 @@ SEED_TEAMS: list[dict[str, Any]] = [
         "league": "CBLOL",
     },
     {
+        "key": "cs2", "name": "CS2", "sport": "esports",
+        "aliases": ["cs2", "counter-strike", "counter strike", "csgo",
+                    "counter-strike 2", "furia", "mibr", "loud cs2"],
+        "league": "Counter-Strike 2",
+    },
+    {
         "key": "nba", "name": "NBA", "sport": "basquete",
         "aliases": ["nba", "basquete", "lakers", "celtics", "warriors", "bucks"],
         "league": "NBA",

@@ -41,6 +41,12 @@ output groups headlines by followed team. Present them in the user's
 language — **only headlines the JSON carries**, each with its link. A
 headline the script did not output does not exist.
 
+The sweep reads the sport's general feeds (ge, ESPN, BBC) **plus one Google
+News search per subject**, built from its name and aliases in the user's
+language — that is how scenes without dedicated feeds (CS2, CBLOL) still
+get headlines. Team-specific feeds stay dead silently if a provider refuses;
+the subject's search feed carries it.
+
 ## Matchday — honest by design
 
     fandom.py matchday            # every followed team

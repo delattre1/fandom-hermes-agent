@@ -83,6 +83,14 @@ def cmd_teams(args: argparse.Namespace) -> int:
     return emit({"added": store.compact_view(team)})
 
 
+def _collect(team, settings):
+    """One subject's news sweep, in the user's language."""
+    return collect_news(
+        team.feeds, str(team.sport),
+        name=team.name, aliases=team.aliases, language=str(settings["language"]),
+    )
+
+
 def cmd_search_team(args: argparse.Namespace) -> int:
     try:
         candidates = thesportsdb.search_team(" ".join(args.words))
@@ -95,9 +103,10 @@ def cmd_news(args: argparse.Namespace) -> int:
     store = FandomStore(HOME)
     store.seed_defaults()  # the BR seed, once, into an empty store
     teams = store.all()
+    settings = fandom_config.load(HOME)
     items, failed = [], []
     for team in teams:
-        team_items, team_failed = collect_news(team.feeds, str(team.sport))
+        team_items, team_failed = _collect(team, settings)
         items.extend(team_items)
         failed.extend(team_failed)
     buckets = _filter(items, teams)
@@ -130,12 +139,12 @@ def cmd_digest(args: argparse.Namespace) -> int:
     store = FandomStore(HOME)
     store.seed_defaults()
     teams = store.all()
+    settings = fandom_config.load(HOME)
     items, failed = [], []
     for team in teams:
-        team_items, team_failed = collect_news(team.feeds, str(team.sport))
+        team_items, team_failed = _collect(team, settings)
         items.extend(team_items)
         failed.extend(team_failed)
-    settings = fandom_config.load(HOME)
     payload = digest.build(teams, items, failed,
                            per_team_limit=int(settings["news_limit_per_team"]))
     payload["timezone"] = settings["timezone"]
