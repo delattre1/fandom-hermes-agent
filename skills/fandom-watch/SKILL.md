@@ -57,6 +57,19 @@ confirmed instead of guessing. A `result` with a `score` is the only placar
 you may state. The free provider often answers empty: that is "não achei
 jogo confirmado", never "não tem jogo".
 
+**Live games have a second road.** When a matchday answer is empty — a
+league follow with no provider, or the free tier's silence — run:
+
+    fandom.py live
+
+It merges what the feeds are literally shouting (headlines carrying
+"Ao vivo" / "Live") with the fixtures of teams that do have a provider.
+Present the headlines as **what the feeds show right now**, with their
+links — "o ge está marcando Flamengo x Corinthians como ao vivo agora" —
+and never attach a score to them. A live headline is a pointer; a placar
+comes only from `matchday`. Then offer the provider link for a followed
+team, which is what unlocks real scores.
+
 ## Reply formats
 
 Follow confirmed:

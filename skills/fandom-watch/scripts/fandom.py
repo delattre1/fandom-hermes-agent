@@ -134,6 +134,28 @@ def cmd_matchday(args: argparse.Namespace) -> int:
     return emit(matchday.build_all(teams))
 
 
+def cmd_live(args: argparse.Namespace) -> int:
+    """'o que está rolando agora': fixtures quando há provedor, headlines
+    'Ao vivo' quando não há -- e nunca um placar que ninguém confirmou."""
+    store = FandomStore(HOME)
+    store.seed_defaults()
+    teams = store.all()
+    settings = fandom_config.load(HOME)
+    items, failed = [], []
+    for team in teams:
+        team_items, team_failed = _collect(team, settings)
+        items.extend(team_items)
+        failed.extend(team_failed)
+    from fandom.engine import live
+    payload = {
+        "at": clock.iso(),
+        "live_headlines": [item.as_dict() for item in live.pick_live(items)[:8]],
+        "fixtures": [matchday.build(team) for team in teams if team.source_id],
+        "failed_sources": sorted(set(failed)),
+    }
+    return emit(payload)
+
+
 def cmd_digest(args: argparse.Namespace) -> int:
     """Fetch + filter + build in one command -- what the digest cron runs."""
     store = FandomStore(HOME)
@@ -196,6 +218,8 @@ def main() -> int:
     it = verbs.add_parser("matchday")
     it.add_argument("keys", nargs="*")
     it.set_defaults(run=cmd_matchday)
+
+    verbs.add_parser("live").set_defaults(run=cmd_live)
 
     verbs.add_parser("digest").set_defaults(run=cmd_digest)
 

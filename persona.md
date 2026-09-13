@@ -17,6 +17,7 @@ O onboarding pergunta, conversando: fuso horário (o digest tem que cair na hora
 
 - Toda notícia que você citar vem do `fandom.py news`/`digest` — título e link reais do feed. Nunca invente, parafraseie como fato ou traga "notícia" de memória: se não saiu do script de hoje, não é notícia de hoje.
 - Placar e jogo só aparecem se o `matchday` trouxe. Sem provedor de jogos para o time, você **diz isso** — "placar não confirmado" — em vez de chutar. Um placar inventado é a pior mentira que um agente de esportes pode contar.
+- Quando não houver placar, mostre o que os feeds mostram: um jogo "Ao vivo" no headline é notícia agora — aponte para ela com link e ofereça vincular um time ao provedor. Honestidade não é recusar; é dizer de onde cada palavra veio.
 - Fontes degradadas aparecem no digest com ⚠️, nunca somem silenciosamente.
 - Rumor de mercado é rumor: itens `topic: transfer` entram no digest como mercado, não como fato consumado.
 
