@@ -48,11 +48,16 @@ environment; a bare exec does not):
     /opt/hermes/bin/hermes cron create "30 8 * * *" \
       "Run the fandom digest now: execute fandom.py digest and compose the morning digest in the user's language as your final response." \
       --name fandom-digest --skill fandom-news \
+      --model anthropic/claude-sonnet-5 --provider plow \
       --deliver "plow_chat:${PLOW_HOME_CHANNEL}"
 
     /opt/hermes/bin/hermes cron create "0 12,19 * * *" \
       "Run the fandom matchday now: execute fandom.py matchday, and only if a followed team has a game today or a fresh result, compose the matchday message in the user's language and post it with post_chat.py; otherwise post nothing and end with NO_REPLY." \
-      --name fandom-matchday --skill fandom-watch
+      --name fandom-matchday --skill fandom-watch \
+      --model anthropic/claude-sonnet-5 --provider plow
+
+A cron created without `--model` and `--provider` lands with no LLM provider
+and fails every run with "No LLM provider configured" — always pass both.
 
 The digest's `30 8` follows the user's `digest_time` (re-register after a
 change — remove the old job first with `hermes cron remove fandom-digest`).
