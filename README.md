@@ -1,6 +1,7 @@
 # Fandom
 
-> **Seu time, seu noticiário.** **Your teams, your news.**
+> **Seu time, seu noticiário: futebol, NBA, NFL e e-sports.**
+> **Your teams, your news — scores and the morning digest.**
 
 A sports-fandom [Plow](https://plow.co) agent, Brazilian first. Text it a
 team, a league or an esports scene and it follows the headlines for you:
